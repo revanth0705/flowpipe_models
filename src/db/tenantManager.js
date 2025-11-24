@@ -2,16 +2,11 @@
 import { Sequelize } from "sequelize";
 import loadModels from "../models/index.js";
 
-const connectionCache = {};
-
 export default async function getTenantConnection(tenantId, dbLink) {
   if (!tenantId) throw new Error("tenantId is required");
   if (!dbLink) throw new Error("dbLink is required");
 
-  if (connectionCache[tenantId]) {
-    return connectionCache[tenantId];
-  }
-
+  // ❗ NO CACHE INSIDE PACKAGE
   const sequelize = new Sequelize(dbLink, {
     dialect: "postgres",
     logging: false,
@@ -30,12 +25,10 @@ export default async function getTenantConnection(tenantId, dbLink) {
 
   console.log(`🔗 New DB connection established for tenant: ${tenantId}`);
 
-  connectionCache[tenantId] = {
+  return {
     sequelize,
-    models,
+    ...models,
     tenantId,
     dbLink,
   };
-
-  return connectionCache[tenantId];
 }
