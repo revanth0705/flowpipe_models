@@ -1,3 +1,7 @@
-import tenantManager from "./db/tenantManager.js";
+import getTenantConnection from "./db/tenantManager.js";
+import loadModels from "./models/index.js";
 
-export default tenantManager;
+export {
+    getTenantConnection,
+  loadModels
+};
