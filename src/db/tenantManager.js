@@ -1,6 +1,6 @@
 // src/db/tenantManager.js
 import { Sequelize } from "sequelize";
-import loadModels from "../models/index.js";
+import {loadModels} from "../models/index.js";
 
 export default async function getTenantConnection(tenantId, dbLink) {
   if (!tenantId) throw new Error("tenantId is required");
