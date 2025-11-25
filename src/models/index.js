@@ -1,6 +1,6 @@
 // src/models/index.js
 
-import BbpsTransaction from "./BbpsTransaction.model.js";
+import BbpsTransaction from "./bbpsTransaction.model.js";
 import TransactionRegistery from "./transactionRegistery.model.js";
 
 export function loadModels(sequelize) {
